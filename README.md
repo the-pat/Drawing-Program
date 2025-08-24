@@ -92,6 +92,7 @@
 *Active Contributors*
 
 - Jhovani Gallardo Moreno
+- Nicholas Baldev
 - Omar Khan
 - Patrick Tone
 
@@ -135,6 +136,7 @@ This platform was developed using the following libraries which are available un
 - [JQuery](https://github.com/jquery/jquery)
 - [Bootstrap](https://github.com/twbs/bootstrap)
 - [Bootstrap Icons](https://github.com/twbs/icons)
+- [Open Source Embedded Code Editor (OSCE)](https://github.com/MichaelWehar/Open-Source-Embedded-Code-Editor)
 
 ## Contact Us
 

@@ -55,6 +55,9 @@ function changeSelectionModified(id) {
 
     // Optional buttons
     enableOptionalButtons();
+
+    // Support for editor
+    loadCodeIntoEditor(eName, algorithms[id - 1], algShortName[id - 1]);
 }
 
 function enableOptionalButtons() {
@@ -480,6 +483,17 @@ function algoNameUpdate(currentSelection) {
     $('.current_algo').text(algNames[currentSelection - 1]);
 }
 
+// Extra tab events
+let codeMinWidth = 700;
+let otherMinWidth = 200;
+var tabCode = document.getElementById("v-pills-code-tab");
+tabCode.addEventListener('shown.bs.tab', function (event) {
+  document.getElementById("sideContent").style.minWidth = codeMinWidth + "px";
+});
+tabCode.addEventListener('hidden.bs.tab', function (event) {
+  document.getElementById("sideContent").style.minWidth = otherMinWidth + "px";
+});
+
 // update offcanvas content
 function transformPanel(curr) {
     if (curr.matches) { // If media query matches
@@ -488,6 +502,8 @@ function transformPanel(curr) {
         $('#v-pills-algo-tab').attr("data-bs-toggle", "offcanvas")
             .attr("aria-controls", "offcanvasRight").attr("data-bs-target", "#offcanvasRight");
         $('#v-pills-params-tab').attr("data-bs-toggle", "offcanvas")
+            .attr("aria-controls", "offcanvasRight").attr("data-bs-target", "#offcanvasRight");
+        $('#v-pills-code-tab').attr("data-bs-toggle", "offcanvas")
             .attr("aria-controls", "offcanvasRight").attr("data-bs-target", "#offcanvasRight");
         $('#v-pills-action-tab').attr("data-bs-toggle", "offcanvas")
             .attr("aria-controls", "offcanvasRight").attr("data-bs-target", "#offcanvasRight");
@@ -502,6 +518,9 @@ function transformPanel(curr) {
         } else if ($('#v-pills-params-tab').attr("class") === "nav-link active") {
             $('#v-pills-params-tab').attr("class", "nav-link");
             lastPanel = "#v-pills-params-tab";
+        } else if ($('#v-pills-code-tab').attr("class") === "nav-link active") {
+            $('#v-pills-code-tab').attr("class", "nav-link");
+            lastPanel = "#v-pills-code-tab";
         } else if ($('#v-pills-action-tab').attr("class") === "nav-link active") {
             $('#v-pills-action-tab').attr("class", "nav-link");
             lastPanel = "#v-pills-action-tab";
@@ -513,6 +532,7 @@ function transformPanel(curr) {
         // initialize offcanvas
         $('#offcanvasRight').append($('.algo_panel').hide());
         $('#offcanvasRight').append($('.param_panel').hide());
+        $('#offcanvasRight').append($('.code_panel').hide());
         $('#offcanvasRight').append($('.history_panel').hide());
         $('#offcanvasRight').append($('.about_panel').hide());
         let prev_panel = "";
@@ -524,6 +544,9 @@ function transformPanel(curr) {
                     $('.algo_panel').hide();
                 } else if (prev_panel === "v-pills-params-tab") {
                     $('.param_panel').hide();
+                } else if (prev_panel === "v-pills-code-tab") {
+                    $('.code_panel').hide();
+                    document.getElementById("offcanvasRight").style.minWidth = otherMinWidth + "px";
                 } else if (prev_panel === "v-pills-action-tab") {
                     $('.history_panel').hide();
                 } else {
@@ -535,6 +558,9 @@ function transformPanel(curr) {
                 $('.algo_panel').show();
             } else if (this.id === "v-pills-params-tab") {
                 $('.param_panel').show();
+            } else if (this.id === "v-pills-code-tab") {
+                $('.code_panel').show();
+                document.getElementById("offcanvasRight").style.minWidth = codeMinWidth + "px";
             } else if (this.id === "v-pills-action-tab") {
                 $('.history_panel').show();
             } else {
@@ -550,6 +576,8 @@ function transformPanel(curr) {
             .attr("aria-controls", "v-pills-algo").attr("data-bs-target", "#v-pills-algo");
         $('#v-pills-params-tab').attr("data-bs-toggle", "pill")
             .attr("aria-controls", "v-pills-params").attr("data-bs-target", "#v-pills-params");
+        $('#v-pills-code-tab').attr("data-bs-toggle", "pill")
+            .attr("aria-controls", "v-pills-code").attr("data-bs-target", "#v-pills-code");
         $('#v-pills-action-tab').attr("data-bs-toggle", "pill")
             .attr("aria-controls", "v-pills-action").attr("data-bs-target", "#v-pills-action");
         $('#v-pills-about-tab').attr("data-bs-toggle", "pill")
@@ -559,6 +587,7 @@ function transformPanel(curr) {
         // reshow panels
         $('#v-pills-algo').append($('.algo_panel').show());
         $('#v-pills-params').append($('.param_panel').show());
+        $('#v-pills-code').append($('.code_panel').show());
         $('#v-pills-action').append($('.history_panel').show());
         $('#v-pills-about').append($('.about_panel').show());
 
@@ -675,6 +704,16 @@ $('.inner_param ul button').click(function () {
 $('.inner_param .dropdown-menu, .modal .dropdown-menu').on('click', function(e) {
     e.stopPropagation();
 });
+
+function loadCodeIntoEditor(eName, alg, algName) {
+  let str = "";
+  for(key in alg) {
+    if(typeof alg[key] === "function") {
+      str += algName + "." + key + " = " + alg[key].toString() + "\n";
+    }
+  }
+  replaceEditorText(eName, str);
+}
 
 // Initial scripts
 enableOptionalButtons();
