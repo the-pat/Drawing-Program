@@ -1009,7 +1009,7 @@ function findAndReplace(eName)
 
 function goToGitRepo()
 {
-  window.open('https://github.com/MichaelWehar/Open-Source-Code-Editor', '_blank');
+  window.open('https://github.com/MichaelWehar/Open-Source-Embedded-Code-Editor', '_blank');
 }
 
 function type(eName, str)
