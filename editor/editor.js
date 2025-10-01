@@ -770,9 +770,15 @@ function calculateColorOffset(color, offset)
   let g = color[1] + offset;
   let b = color[2] + offset;
 
-  if (r > 255) r = 255;
-  if (g > 255) g = 255;
-  if (b > 255) b = 255;
+  if (r > 255) {
+    r = 255;
+  }
+  if (g > 255) {
+    g = 255;
+  }
+  if (b > 255) {
+    b = 255;
+  }
   return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
@@ -863,7 +869,7 @@ function updateWordWrap(eName) {
   }
   else
   {
-    code_textarea.style.whiteSpace = "nowrap";
+    code_textarea.style.whiteSpace = "pre";
     code_textarea.style.overflowX = "auto";
   }
   updateLineNumbers(eName);

@@ -28,6 +28,9 @@
   resize: none;
   overflow-y: hidden;
 }
+.line-numbers:disabled {
+  -webkit-opacity: 1;
+}
 .code-editor {
   width: 735px;
   height: 500px;
