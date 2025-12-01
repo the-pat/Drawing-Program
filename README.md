@@ -72,6 +72,7 @@
 
 *More Articles & Presentations*
 
+- [Algorithmic Designs For Socks (DFS) by AlgoArt](https://gallery.bridgesmathart.org/exhibitions/2025-bridges-conference-math-fashion/michael-wehar) (Bridges 2025 - Fashion Show)
 - [Generative Clothing Designs (GCD) by AlgoArt](https://gallery.bridgesmathart.org/exhibitions/2024-bridges-conference-fashion-show/michael-wehar) (Bridges 2024 - Fashion Show)
 - [AlgoArt - Nine Drawing Algorithms](https://gallery.bridgesmathart.org/exhibitions/2023-bridges-conference-short-film-festival/michael-wehar) (Bridges 2023 - Short Film Festival)
 - [Using Augmented Reality to Show How An Artwork Was Created](https://dac.siggraph.org/sparks/2023-01-spatiality-in-virtual-reality-representation-interpretation-experience/) (SIGGRAPH DAC: SPARKS TALK 2023)
